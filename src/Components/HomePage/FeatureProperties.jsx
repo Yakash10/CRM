@@ -6,9 +6,12 @@ import React, { useState } from "react";
 import properties1 from "../HomePage/Assets/properties1.png";
 import properties2 from "../HomePage/Assets/properties2.png";
 import properties3 from "../HomePage/Assets/properties3.png";
+import { useNavigate } from "react-router-dom";
 
 const FeaturedProperties = () => {
   const [activeCity, setActiveCity] = useState("All");
+
+  const navigate = useNavigate();
 
   const properties = [
     {
@@ -68,14 +71,14 @@ const FeaturedProperties = () => {
       {/* City Filter (Scrollable on smaller screens) */}
       <div className="flex space-x-4 mb-6 overflow-x-auto">
         {cities.map((city) => (
-          <button
+          <button onClick={() => navigate("/property")}
             key={city}
             className={`px-4 py-2 whitespace-nowrap rounded-full ${
               activeCity === city
                 ? "bg-white text-black"
                 : "border border-gray-600 text-gray-400 hover:border-white hover:text-white"
             }`}
-            onClick={() => setActiveCity(city)}
+            // onClick={() => setActiveCity(city)}
           >
             {city}
           </button>
@@ -117,3 +120,6 @@ const FeaturedProperties = () => {
 };
 
 export default FeaturedProperties;
+
+
+

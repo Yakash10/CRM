@@ -27,6 +27,7 @@ import Footer from "./Components/HomePage/Footer";
 
 // Property Inner Page Components
 import PropertyNavbar from "./Components/PropertyInnerPage/PropertyNavbar";
+import Aboutus from "./Components/PropertyInnerPage/Aboutus";
 import KeyAmenities from "./Components/PropertyInnerPage/KeyAmenities";
 import Map from "./Components/PropertyInnerPage/Map";
 import MoreProperties from "./Components/PropertyInnerPage/MoreProperties";
@@ -82,6 +83,7 @@ function PropertyPage() {
   return (
     <>
       <PropertyNavbar />
+      <Aboutus/>
       <KeyAmenities />
       <Map />
       <MoreProperties />

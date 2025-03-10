@@ -1,80 +1,92 @@
 import React from "react";
+import img1 from "../PropertyInnerPage/Assets/img1.png";
+import img2 from "../PropertyInnerPage/Assets/img2.png";
 
-const PropertyListing = () => {
+const Aboutus = () => {
   return (
-    <div className="p-6 max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
-      {/* Left Section - Main Image and Thumbnails */}
-      <div className="md:col-span-2">
+    <div className="mx-auto p-6">
+      {/* Image Section */}
+      <div className="flex gap-20">
         <img
-          src="/mnt/data/image.png"
-          alt="Bouganville"
-          className="w-full h-auto rounded-lg"
+          src={img1}
+          alt="Property"
+          className="w-[700px] h-[550px] rounded-lg shadow-lg"
         />
-        <div className="grid grid-cols-2 gap-4 mt-4">
+        <div className="flex flex-col gap-6">
           <img
-            src="/mnt/data/image.png"
-            alt="Bouganville"
-            className="w-full h-auto rounded-lg"
+            src={img2}
+            alt="Property"
+            className="w-[475px] h-[260px] rounded-lg shadow-md"
           />
           <img
-            src="/mnt/data/image.png"
-            alt="Bouganville"
-            className="w-full h-auto rounded-lg"
+            src={img2}
+            alt="Property"
+            className="w-[475px] h-[260px] rounded-lg shadow-md"
           />
         </div>
       </div>
+      {/* Image Section End */}
 
-      {/* Right Section - Property Details & Contact Form */}
-      <div className="md:col-span-1 flex flex-col justify-between">
-        <div>
+      <div className="grid grid-cols-3 gap-12 mt-8 items-start">
+        {/* Left Section - Details */}
+        <div className="col-span-2">
           <h1 className="text-3xl font-bold text-red-600">Bouganville</h1>
-          <p className="text-gray-600 flex items-center mt-2">
+          <p className="text-gray-600 flex items-center gap-2 mt-2">
             📍 Koyambedu, Chennai
           </p>
-          <p className="text-red-500 text-xl font-semibold mt-2">
+          <p className="text-xl font-semibold text-red-500 mt-2">
             ₹2CR - 2.5CR
           </p>
-          <div className="flex items-center gap-4 mt-4 text-gray-600">
+          <div className="flex gap-6 mt-4 text-gray-700 text-sm border-b pb-4">
             <span>📏 Sqft: 3567</span>
-            <span>🏡 Units: 2BHK</span>
+            <span>🏠 Units: 2BHK</span>
             <span>🏢 Type: Residential Apartment</span>
           </div>
-          <button className="mt-4 px-6 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600">
+          <button className="mt-4 bg-red-500 text-white px-6 py-2 rounded-lg shadow-md hover:bg-red-600">
             Book Now
           </button>
+          <h2 className="mt-6 text-xl font-semibold">About the property</h2>
+          <p className="text-gray-600 mt-2 text-base leading-relaxed">
+            Nestled in a prime location, Bouganville is the epitome of luxurious
+            living. Designed for those who seek tranquility without compromising
+            on modern conveniences, this property offers a harmonious blend of
+            sophistication, comfort, and timeless elegance. Whether you're
+            looking for a serene escape from the city's hustle or a vibrant
+            community to call home, Bouganville is your ideal destination.
+          </p>
         </div>
 
-        {/* Contact Form */}
-        <div className="bg-gray-100 p-6 rounded-lg mt-6">
-          <h2 className="text-xl font-semibold">Schedule an Appointment</h2>
-          <form className="mt-4 grid gap-4">
-            <input
-              type="text"
-              placeholder="Full name"
-              className="p-2 border rounded-lg w-full"
-            />
-            <input
-              type="text"
-              placeholder="Your phone"
-              className="p-2 border rounded-lg w-full"
-            />
-            <input
-              type="email"
-              placeholder="Your email"
-              className="p-2 border rounded-lg w-full"
-            />
-            <textarea
-              placeholder="Your message"
-              className="p-2 border rounded-lg w-full"
-            ></textarea>
-            <button className="px-6 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 w-full">
-              Submit
-            </button>
-          </form>
+        {/* Right Section - Appointment Form */}
+        <div className="p-6 border rounded-lg shadow-md bg-white w-full">
+          <h3 className="text-lg font-semibold mb-4">
+            Schedule an Appointment
+          </h3>
+          <input
+            type="text"
+            placeholder="Full name"
+            className="w-full p-2 border mt-2 rounded"
+          />
+          <input
+            type="text"
+            placeholder="Your phone"
+            className="w-full p-2 border mt-2 rounded"
+          />
+          <input
+            type="email"
+            placeholder="Your email"
+            className="w-full p-2 border mt-2 rounded"
+          />
+          <textarea
+            placeholder="Your message"
+            className="w-full p-2 border mt-2 rounded"
+          ></textarea>
+          <button className="mt-4 bg-red-500 text-white px-6 py-2 w-full rounded-lg shadow-md hover:bg-red-600">
+            Submit
+          </button>
         </div>
       </div>
     </div>
   );
 };
 
-export default PropertyListing;
+export default Aboutus;

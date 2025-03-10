@@ -111,12 +111,12 @@ const BookingDetails = () => {
 
             {/* Property Features */}
             <div className="border-t border-gray-300 mt-3 pt-2 text-gray-700 text-sm">
-              <div className="flex gap-4">
+              <div className="flex gap-4 p-2">
                 <div className="flex items-center">
                   <img
                     src={sqft}
                     alt="Sqft"
-                    className="w-4 h-10 mr-1"
+                    className="w-4 h-6 mr-1"
                   />
                   <span>Sqft: 3567</span>
                 </div>
@@ -124,16 +124,16 @@ const BookingDetails = () => {
                   <img
                     src={bed}
                     alt="Units"
-                    className="w-4 h-4 mr-1"
+                    className="w-4 h-5 mr-1"
                   />
                   <span>Units: 2BHK</span>
                 </div>
               </div>
-              <div className="flex items-center mt-2">
+              <div className="flex p-2 items-center  mt-2">
                 <img
                   src={Apartment}
                   alt="Building Type"
-                  className="w-4 h-4 mr-1"
+                  className="w-4 h-5 mr-1"
                 />
                 <span>Type: Residential Apartment</span>
               </div>
