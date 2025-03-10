@@ -1,5 +1,6 @@
 import React from "react";
-import featured1 from "../HomePage/Assets/featured1.png";
+// import featured1 from "../HomePage/Assets/featured1.png";
+import top1 from "../HomePage/Assets/top1.png";
 import top2 from "../HomePage/Assets/top2.png";
 import top3 from "../HomePage/Assets/top3.png"
 
@@ -8,7 +9,7 @@ const MoreProperties = () => {
     {
       title: "Luxury Villa in Palm Jumeirah",
       price: "₹20,00,000",
-      image: featured1, // Directly from public folder
+      image: top1, // Directly from public folder
       features: ["Private Beach Access"],
       sqft: "3567",
       beds: "6",
