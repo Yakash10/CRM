@@ -1,8 +1,10 @@
 import React from "react";
 import img1 from "../PropertyInnerPage/Assets/img1.png";
 import img2 from "../PropertyInnerPage/Assets/img2.png";
+import { useNavigate } from "react-router-dom";
 
 const Aboutus = () => {
+  const navigate = useNavigate();
   return (
     <div className="mx-auto p-6">
       {/* Image Section */}
@@ -42,7 +44,10 @@ const Aboutus = () => {
             <span>🏠 Units: 2BHK</span>
             <span>🏢 Type: Residential Apartment</span>
           </div>
-          <button className="mt-4 bg-red-500 text-white px-6 py-2 rounded-lg shadow-md hover:bg-red-600">
+          <button
+            onClick={() => navigate("/booking")}
+            className="mt-4 bg-red-500 text-white px-6 py-2 rounded-lg shadow-md hover:bg-red-600"
+          >
             Book Now
           </button>
           <h2 className="mt-6 text-xl font-semibold">About the property</h2>
