@@ -1,107 +1,128 @@
-import React from "react";
+
+
+
+import React, { useState } from "react";
 import top1 from "../HomePage/Assets/top1.png";
 import top2 from "../HomePage/Assets/top2.png";
-import top3 from "../HomePage/Assets/top3.png"
+import top3 from "../HomePage/Assets/top3.png";
+
+const apartments = [
+  {
+    name: "Luxury Villa in Palm Jumeirah",
+    price: "₹20,00,000",
+    features: "Private Beach Access",
+    final: ["Sqft: 3567", "5 Beds", "6 Bath"],
+    location: "Palm Jumeirah, Dubai",
+    image: top3,
+  },
+  {
+    name: "Bouganville",
+    price: "₹1.49cr - ₹1.54cr",
+    features: "Private Beach Access",
+    final: ["Sqft: 3567", "5 Beds", "6 Bath"],
+    location: "Downtown Dubai",
+    image: top2,
+  },
+  {
+    name: "Luxury Villa in Palm Jumeirah",
+    price: "₹20,00,000",
+    features: "Private Beach Access",
+    final: ["Sqft: 3567", "5 Beds", "6 Bath"],
+    location: "Palm Jumeirah, Dubai",
+    image: top1,
+  },
+  {
+    name: "Luxury Villa in Palm Jumeirah",
+    price: "₹20,00,000",
+    features: "Private Beach Access",
+    final: ["Sqft: 3567", "5 Beds", "6 Bath"],
+    location: "Palm Jumeirah, Dubai",
+    image: top1,
+  },
+];
 
 const TopApartmentProject = () => {
-  const projects = [
-    {
-      title: "Luxury Villa in Palm Jumeirah",
-      price: "₹20,00,000",
-      image: top1, // Directly from public folder
-      features: ["Private Beach Access"],
-      sqft: "3567",
-      beds: "6",
-      bath: "6",
-    },
-    {
-      title: "Bouganville",
-      price: "₹1.49cr - ₹1.54cr",
-      image: top2,
-      features: ["Modern Interiors"],
-      sqft: "4000",
-      beds: "5",
-      bath: "5",
-    },
-    {
-      title: "Skyline Penthouse",
-      price: "₹25,00,000",
-      image: top3,
-      features: ["City View"],
-      sqft: "5000",
-      beds: "4",
-      bath: "5",
-    },
-    {
-      title: "Beachfront Bungalow",
-      price: "₹30,00,000",
-      image: top2,
-      features: ["Oceanfront"],
-      sqft: "4500",
-      beds: "6",
-      bath: "7",
-    },
-  ];
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const itemsPerPage = 3; // Default for large screens
+
+  const goToPrevious = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === 0 ? apartments.length - itemsPerPage : prevIndex - 1
+    );
+  };
+
+  const goToNext = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex + itemsPerPage >= apartments.length ? 0 : prevIndex + 1
+    );
+  };
 
   return (
-    <div className="container mx-auto p-6">
-      {/* Heading and Button */}
-      <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl font-semibold">Top Apartment Projects</h2>
-        <button className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded">
-          View All
+    <div className="relative w-full mx-auto p-4">
+      {/* Header */}
+      <div className="flex justify-between items-center mb-4">
+        <h2 className="text-2xl font-bold">Top Apartment Projects</h2>
+        <button className="bg-orange-500 text-white px-4 py-2 rounded">
+          View all
         </button>
       </div>
 
-      {/* Project Cards Section */}
-      <div className="flex overflow-x-auto space-x-4 justify-between scrollbar-hide">
-        {projects.map((project, index) => (
-          <div
-            key={index}
-            className="flex-shrink-0 w-80 bg-white  rounded-lg shadow-md overflow-hidden"
-          >
-            <img
-              src={project.image}
-              alt={project.title}
-              className="w-full h-48 object-cover"
-            />
-            <div className="p-4">
-              <h3 className="text-lg font-semibold mb-2">{project.title}</h3>
-              <p className="text-gray-700 mb-2">{project.price}</p>
+      {/* Apartment Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 w-full">
+        {apartments
+          .slice(currentIndex, currentIndex + itemsPerPage)
+          .map((apartment, index) => (
+            <div
+              key={index}
+              className="bg-white shadow-md rounded-lg overflow-hidden w-full"
+            >
+              <img
+                src={apartment.image}
+                alt={apartment.name}
+                className="w-full h-40 sm:h-48 md:h-60 object-cover"
+              />
+              <div className="p-4">
+                <h2 className="text-lg font-bold">{apartment.name}</h2>
+                <p className="text-lg text-red-600 font-semibold">
+                  {apartment.price}
+                </p>
+                <p className="text-sm text-gray-500">📍 {apartment.location}</p>
+                <p className="mt-2 text-sm text-gray-600">
+                  🔹 {apartment.features}
+                </p>
 
-              {/* Feature */}
-              <div className="flex items-center mb-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5 text-gray-500 mr-2"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M3 12l2-2m0 0l7-7a2 2 0 012.828 0l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7m2 2l4.343-4.343"
-                  />
-                </svg>
-                <span className="text-sm text-gray-600">
-                  {project.features[0]}
-                </span>
-              </div>
-
-              {/* Property Details */}
-              <div className="flex justify-between text-sm text-gray-600">
-                <span>Sqft: {project.sqft}</span>
-                <span>Beds: {project.beds}</span>
-                <span>Bath: {project.bath}</span>
+                {/* Features */}
+                <div className="flex flex-wrap gap-2 mt-2 text-sm text-gray-600">
+                  {apartment.final.map((feature, i) => (
+                    <span key={i} className="flex items-center gap-1">
+                      🔹 {feature}
+                    </span>
+                  ))}
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+      </div>
+
+      {/* Navigation Buttons */}
+      <div className="flex justify-between mt-4">
+        <button
+          onClick={goToPrevious}
+          className="bg-gray-200 px-4 py-2 rounded shadow-md"
+        >
+          &larr; Previous
+        </button>
+        <button
+          onClick={goToNext}
+          className="bg-gray-200 px-4 py-2 rounded shadow-md"
+        >
+          Next &rarr;
+        </button>
       </div>
     </div>
   );
 };
 
 export default TopApartmentProject;
+
+

@@ -1,10 +1,3 @@
-
-
-
-
-
-
-
 import { Search, Plus } from "lucide-react";
 import searchright from "../AdminDashboard/Assets/searchright.png";
 import bellicon from "../AdminDashboard/Assets/bellicon.png";
@@ -42,7 +35,7 @@ export default function Navbar() {
         {/* Profile Image */}
         <div className="flex items-center">
           <img
-                      src={navprofile}
+            src={navprofile}
             alt="Profile"
             className="w-10 h-10 rounded-full object-cover"
           />

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Review1 from "./Assets/Review1.png";
 import Review2 from "./Assets/Review2.png";
 import Review3 from "./Assets/Review3.png";
@@ -39,22 +39,38 @@ const reviews = [
     imageUrl: reviewprofile1,
     houseImageUrl: Review3,
   },
+  {
+    id: 4,
+    text: "Highly recommended!",
+    description:
+      "The process was smooth and transparent. I appreciate the detailed information provided for each property.",
+    author: "Jane Smith",
+    role: "Marketing Manager",
+    rating: 4.5,
+    imageUrl: reviewprofile1,
+    houseImageUrl: Review3,
+  },
 ];
 
 const ReviewSlider = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % reviews.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <div className="relative w-full overflow-hidden">
+    <div className="relative w-full overflow-hidden flex justify-center">
       <div
         className="flex transition-transform duration-500 ease-in-out"
-        style={{ transform: `translateX(-${currentSlide * 20}%)` }}
+        style={{ transform: `translateX(-${currentSlide * 100}%)` }}
       >
-        {reviews.map((review, index) => (
-          <div key={review.id} className="flex-shrink-0 w-[380px] p-6">
+        {reviews.map((review) => (
+          <div key={review.id} className="w-full flex-shrink-0 p-6 max-w-lg">
             <div className="bg-white rounded-lg shadow-lg p-6 flex flex-col items-center h-[500px]">
-              {" "}
-              {/* Added fixed height */}
               <div className="relative w-full">
                 <img
                   src={review.houseImageUrl}

@@ -1,16 +1,12 @@
 
 
 
-
-
-
-
 import { Search, Plus } from "lucide-react";
-import searchright from "../AdminDashboard/Assets/searchright.png";
-import bellicon from "../AdminDashboard/Assets/bellicon.png";
-import navprofile from "../AdminDashboard/Assets/navprofile.png";
+import searchright from "../UserDashboard/Assests/searchright.png";
+import bellicon from "../UserDashboard/Assests/bellicon.png";
+import Navprofile from "../UserDashboard/Assests/Navprofile.png";
 
-export default function Navbar() {
+export default function UserNavbar() {
   return (
     <div className="flex items-center justify-between bg-white px-6 py-3 shadow-md">
       {/* Greeting Text */}
@@ -42,7 +38,7 @@ export default function Navbar() {
         {/* Profile Image */}
         <div className="flex items-center">
           <img
-                      src={navprofile}
+                      src={Navprofile}
             alt="Profile"
             className="w-10 h-10 rounded-full object-cover"
           />

@@ -11,12 +11,14 @@ import {
   FaSignOutAlt,
 } from "react-icons/fa";
 
+import sidebarlogo from "../AdminDashboard/Assets/sidebarlogo.png";
+
 const Sidebar = () => {
   return (
     <div className="h-screen w-64 bg-white shadow-md flex flex-col p-4">
       {/* Logo Section */}
       <div className="flex items-center mb-6">
-        <img src="/logo.png" alt="Logo" className="h-8 mr-2" />
+        <img src={sidebarlogo} alt="Logo" className="h-8 mr-2" />
         <h1 className="text-lg font-bold">REAL LAND</h1>
       </div>
 

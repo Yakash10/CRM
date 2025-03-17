@@ -53,7 +53,9 @@ export default function NewEnquiries() {
           </div>
         ))}
       </div>
-         
+
     </div>
   );
 }
+
+

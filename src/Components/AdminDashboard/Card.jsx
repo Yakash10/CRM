@@ -1,3 +1,7 @@
+
+
+
+
 import React from "react";
 
 const cards = [
@@ -41,15 +45,15 @@ const cards = [
 
 const Card = () => {
   return (
-    <div className="flex gap-4 justify-between p-3">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 p-4">
       {cards.map(
         ({ id, image, title, value, percentage, trend, description }) => (
           <div
             key={id}
-            className="bg-white shadow-md rounded-lg p-3 flex flex-col w-[350px] items-start border border-gray-200"
+            className="bg-white shadow-md rounded-lg p-4 flex flex-col items-start border border-gray-200 w-full"
           >
             {/* Image */}
-            <div className="text-3xl">{image}</div>
+            <div className="text-4xl">{image}</div>
 
             {/* Title */}
             <h2 className="text-lg font-semibold mt-2">{title}</h2>
@@ -74,3 +78,4 @@ const Card = () => {
 };
 
 export default Card;
+

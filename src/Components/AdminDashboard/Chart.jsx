@@ -41,7 +41,10 @@ export default function PropertiesSalesChart() {
           <Bar dataKey="sales" fill="#3b82f6" />
         </BarChart>
       </ResponsiveContainer>
-         
+
     </div>
   );
 }
+
+
+
