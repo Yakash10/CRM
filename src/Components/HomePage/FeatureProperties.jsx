@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Properties1 from "../HomePage/Assets/Properties1.png";
-import Properties2 from "../HomePage/Assets/Properties2.png";
-import Properties3 from "../HomePage/Assets/Properties3.png";
+import properties1 from "../HomePage/Assets/properties1.png";
+import Properties2 from "../HomePage/Assets/properties2.png";
+import Properties3 from "../HomePage/Assets/properties3.png";
 import location1 from "../HomePage/Assets/location1.png";
 import bed from "../HomePage/Assets/bed.png";
 import bath from "../HomePage/Assets/bath.png";
@@ -15,7 +15,7 @@ const FeaturedProperties = () => {
     {
       title: "Luxury Villa in Palm Jumeirah",
       price: "₹20,00,000",
-      image: Properties1,
+      image: properties1,
       city: "Hyderabad",
       beds: "5",
       bath: "6",
