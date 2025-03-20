@@ -51,7 +51,22 @@ import PropertyCard from "./Components/PropertyManagementDashboard/PropertyCard"
 import TotalIncome from "./Components/PropertyManagementDashboard/TotalIncome";
 import Expenses from "./Components/PropertyManagementDashboard/Expenses";
 import PropertStatus from "./Components/PropertyManagementDashboard/PropertStatus";
-import RecentTransaction from "./Components/PropertyManagementDashboard/RecentTransaction";
+import RecentTransaction from "./Components/PropertyManagementDashboard/RecentTransaction"; 
+
+// Builder Inner Page Components
+import BuilderNavbar from "./Components/BuilderInnerPage/BuilderNavbar";
+import BuilderHighlights from "./Components/BuilderInnerPage/BuilderHighlights";
+import BuilderProperty from "./Components/BuilderInnerPage/BuilderProperty";
+import BuilderFooter from "./Components/BuilderInnerPage/BuilderFooter";
+
+// client page components
+import ClientNavbar from "./Components/ClientBookingPage/ClientNavbar";
+// import ClientHighlights from "./Components/ClientBookingPage/ClientHighlights";
+import MainContent from "./Components/ClientBookingPage/MainContent";
+import ClientFooter from "./Components/ClientBookingPage/ClientFooter";
+
+
+
 
 // Admin Dashboard Layout
 function AdminDashboard() {
@@ -76,6 +91,32 @@ function AdminDashboard() {
 
 
 
+
+
+// Builder Inner Page Layout
+function BuilderInnerPage() {
+  return (
+    <>
+      <BuilderNavbar />
+      <BuilderHighlights />
+      <BuilderProperty />
+      <BuilderFooter/>
+    </>
+  );
+}
+
+
+// client booking Layout
+function ClientBookingPage() { 
+  return (
+    <>
+      <ClientNavbar />
+      {/* <ClientHighlights /> */}
+      <MainContent />
+      <ClientFooter/>
+    </>
+  );
+}
 
 
 
@@ -171,6 +212,9 @@ function App() {
         <Route path="/userdashboard" element={<UserDashboard />} />
         <Route path="/property" element={<PropertyPage />} />
         <Route path="/booking" element={<BookingPage />} />
+        <Route path="/builder" element={<BuilderInnerPage />} />
+        <Route path="/clientbooking" element={<ClientBookingPage />} />
+
         <Route
           path="/propertymanagement"
           element={<PropertyManagementDashboard />}

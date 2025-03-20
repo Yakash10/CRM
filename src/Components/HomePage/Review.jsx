@@ -1,136 +1,123 @@
-import React, { useState, useEffect } from "react";
-import Review1 from "./Assets/Review1.png";
-import Review2 from "./Assets/Review2.png";
-import Review3 from "./Assets/Review3.png";
-import reviewprofile1 from "./Assets/reviewprofile1.png";
-import reviewprofile2 from "./Assets/reviewprofile2.png";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/autoplay";
+import review1 from "../HomePage/Assets/review1.png";
+import review2 from "../HomePage/Assets/review2.png";
+import review3 from "../HomePage/Assets/review3.png";
+import reviewprofile1 from "../HomePage/Assets/reviewprofile1.png";
+import reviewprofile2 from "../HomePage/Assets/reviewprofile2.png";
 
-const reviews = [
-  {
-    id: 1,
-    text: "Best! I Got The House I Wanted Through Hounter",
-    description:
-      "Through this website I can get a house with the type and specifications I want very easily, without a complicated process to be able to find information on the house we want.",
-    author: "Dianne Russell",
-    role: "Manager Director",
-    rating: 4.6,
-    imageUrl: reviewprofile1,
-    houseImageUrl: Review1,
-  },
-  {
-    id: 2,
-    text: "Amazing experience!",
-    description:
-      "Found my dream home in no time. The platform is user-friendly and the support was excellent.",
-    author: "John Doe",
-    role: "Software Engineer",
-    rating: 4.8,
-    imageUrl: reviewprofile2,
-    houseImageUrl: Review2,
-  },
-  {
-    id: 3,
-    text: "Highly recommended!",
-    description:
-      "The process was smooth and transparent. I appreciate the detailed information provided for each property.",
-    author: "Jane Smith",
-    role: "Marketing Manager",
-    rating: 4.5,
-    imageUrl: reviewprofile1,
-    houseImageUrl: Review3,
-  },
-  {
-    id: 4,
-    text: "Highly recommended!",
-    description:
-      "The process was smooth and transparent. I appreciate the detailed information provided for each property.",
-    author: "Jane Smith",
-    role: "Marketing Manager",
-    rating: 4.5,
-    imageUrl: reviewprofile1,
-    houseImageUrl: Review3,
-  },
-];
-
-const ReviewSlider = () => {
-  const [currentSlide, setCurrentSlide] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % reviews.length);
-    }, 3000);
-    return () => clearInterval(interval);
-  }, []);
+export default function review() {
+  const testimonials = [
+    {
+      id: 1,
+      name: "Dianne Russell",
+      role: "Manager Director",
+      rating: 4.6,
+      review:
+        "Through this website I can get a house with the type and specifications I want very easily, without a complicated process.",
+      image: review1,
+      avatar: reviewprofile1,
+    },
+    {
+      id: 2,
+      name: "John Doe",
+      role: "Real Estate Agent",
+      rating: 4.8,
+      review:
+        "This platform made finding my dream home so much easier! I love how detailed the listings are and how simple the process is.",
+      image: review2,
+      avatar: reviewprofile2,
+    },
+    {
+      id: 3,
+      name: "Sarah Johnson",
+      role: "Property Consultant",
+      rating: 4.7,
+      review:
+        "A fantastic experience! The site offers comprehensive details and the best user experience for property search.",
+      image: review3,
+      avatar: reviewprofile1,
+    },
+    {
+      id: 4,
+      name: "Emily Smith",
+      role: "Investor",
+      rating: 4.9,
+      review:
+        "Highly recommended for property buyers. The seamless experience and great selection make it stand out.",
+      image: review1,
+      avatar: reviewprofile2,
+    },
+  ];
 
   return (
-    <div className="relative w-full overflow-hidden flex justify-center">
-      <div
-        className="flex transition-transform duration-500 ease-in-out"
-        style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+    <div className="w-full mx-auto px-4">
+      <h1 className="text-red-500 text-center">See Our Reviews</h1>
+      <p className=" text-center text-2xl font-semibold mb-6">
+        What Our Users Say About Us
+      </p>
+      <Swiper
+        modules={[Autoplay]}
+        spaceBetween={20}
+        slidesPerView={3} // Default to 3 slides on larger screens
+        autoplay={{ delay: 3000, disableOnInteraction: false }}
+        loop={true}
+        breakpoints={{
+          1024: { slidesPerView: 3 }, // Laptops and desktops
+          768: { slidesPerView: 2 }, // Tablets
+          480: { slidesPerView: 1 }, // Mobile
+        }}
+        className="mySwiper"
       >
-        {reviews.map((review) => (
-          <div key={review.id} className="w-full flex-shrink-0 p-6 max-w-lg">
-            <div className="bg-white rounded-lg shadow-lg p-6 flex flex-col items-center h-[500px]">
-              <div className="relative w-full">
-                <img
-                  src={review.houseImageUrl}
-                  alt="House"
-                  className="w-full h-48 object-cover rounded-lg mb-4"
-                />
-                <div className="absolute inset-0 bg-black opacity-20 rounded-lg"></div>
-              </div>
-              <p className="text-lg font-semibold mb-2 text-center">
-                {review.text}
-              </p>
-              <p className="text-gray-600 mb-4 text-center flex-grow">
-                {review.description}
-              </p>
-              <div className="flex items-center space-x-4 mt-4">
-                <img
-                  src={review.imageUrl}
-                  alt={review.author}
-                  className="w-12 h-12 rounded-full"
-                />
-                <div className="text-center">
-                  <p className="font-semibold">{review.author}</p>
-                  <p className="text-sm text-gray-500">{review.role}</p>
+        {testimonials.map((testimonial) => (
+          <SwiperSlide key={testimonial.id} className="relative">
+            {/* Background Image */}
+            <div className="relative overflow-hidden rounded-lg">
+              <img
+                src={testimonial.image}
+                alt="Modern House"
+                className="w-full h-96 object-cover rounded-lg"
+              />
+            </div>
+
+            {/* Testimonial Card */}
+            <div className="absolute bottom-5 left-1/2 transform -translate-x-1/2 w-11/12 bg-white shadow-lg rounded-xl p-6">
+              <h2 className="font-bold text-lg text-gray-900">
+                Best! I Got The House I Wanted Through Hounter
+              </h2>
+              <p className="text-gray-600 mt-2 text-sm">{testimonial.review}</p>
+
+              {/* User Info */}
+              <div className="flex items-center justify-between mt-4">
+                <div className="flex items-center gap-3">
+                  <img
+                    src={testimonial.avatar}
+                    alt={testimonial.name}
+                    className="w-10 h-10 rounded-full"
+                  />
+                  <div>
+                    <p className="text-sm font-semibold text-gray-800">
+                      {testimonial.name}
+                    </p>
+                    <p className="text-xs text-gray-500">{testimonial.role}</p>
+                  </div>
                 </div>
-                <div className="flex items-center text-yellow-500">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-5 w-5 mr-1"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.242.503 1.756l-2.62 1.908a1 1 0 00-.397 1.11l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-3.087-1.785a1 1 0 00-.83 0l-3.087 1.785c-.755.433-1.54-.118-1.118l1.07-3.292a1 1 0 00-.397-1.11l-2.62-1.908c-.868-.514-.466-1.756.503-1.756h3.462a1 1 0 00.95-.69l1.07-3.292z" />
-                  </svg>
-                  <span className="text-sm">{review.rating}</span>
+
+                {/* Rating */}
+                <div className="flex items-center gap-1">
+                  <span className="text-yellow-500 text-lg">★</span>
+                  <span className="text-gray-900 font-semibold">
+                    {testimonial.rating}
+                  </span>
                 </div>
               </div>
             </div>
-          </div>
+          </SwiperSlide>
         ))}
-      </div>
+      </Swiper>
+      <p></p>
     </div>
   );
-};
-
-const Review = () => {
-  return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100 p-6">
-      <div className="w-full max-w-6xl">
-        <h2 className="text-3xl font-bold mb-6 text-center">
-          What Our Users Say About Us
-        </h2>
-        <div className="text-center mb-6">
-          <a href="#" className="text-blue-500 hover:underline">
-            See Our Review
-          </a>
-        </div>
-        <ReviewSlider />
-      </div>
-    </div>
-  );
-};
-
-export default Review;
+}

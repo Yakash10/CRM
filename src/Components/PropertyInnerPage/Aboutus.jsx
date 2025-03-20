@@ -1,6 +1,11 @@
 import React from "react";
 import img1 from "../PropertyInnerPage/Assets/img1.png";
 import img2 from "../PropertyInnerPage/Assets/img2.png";
+import location1 from "../PropertyInnerPage/Assets/location1.png";
+import bed from "../PropertyInnerPage/Assets/bed.png";
+import sqft from "../PropertyInnerPage/Assets/sqft.png";
+import apartment from "../PropertyInnerPage/Assets/apartment.png";
+
 import { useNavigate } from "react-router-dom";
 
 const Aboutus = () => {
@@ -33,19 +38,27 @@ const Aboutus = () => {
         {/* Left Section - Details */}
         <div className="col-span-2">
           <h1 className="text-3xl font-bold text-red-600">Bouganville</h1>
-          <p className="text-gray-600 flex items-center gap-2 mt-2">
-            📍 Koyambedu, Chennai
-          </p>
-          <p className="text-xl font-semibold text-red-500 mt-2">
-            ₹2CR - 2.5CR
-          </p>
-          <div className="flex gap-6 mt-4 text-gray-700 text-sm border-b pb-4">
-            <span>📏 Sqft: 3567</span>
-            <span>🏠 Units: 2BHK</span>
-            <span>🏢 Type: Residential Apartment</span>
+          <div className="flex justify-between">
+            <p className="text-gray-600 flex items-center gap-2 mt-2">
+              <img src={location1} alt="" /> Koyambedu, Chennai
+            </p>
+            <p className="text-xl font-semibold text-red-500 mt-2">
+              ₹2CR - 2.5CR
+            </p>
+          </div>
+          <div className="flex flex-row gap-6 mt-4 text-gray-700 text-sm border-b pb-4">
+            <p className="flex gap-2">
+              <img src={sqft} alt="" /> Sqft: 3567
+            </p>
+            {/* <p className="flex gap-2">
+              <img src={bed} alt="" /> Units: 2BHK
+            </p> */}
+            <p className="flex gap-2">
+              <img src={apartment} alt="" /> Type: Residential Apartment
+            </p>
           </div>
           <button
-            onClick={() => navigate("/booking")}
+            onClick={() => navigate("/clientbooking")}
             className="mt-4 bg-red-500 text-white px-6 py-2 rounded-lg shadow-md hover:bg-red-600"
           >
             Book Now
@@ -62,30 +75,30 @@ const Aboutus = () => {
         </div>
 
         {/* Right Section - Appointment Form */}
-        <div className="p-6 border rounded-lg shadow-md bg-white w-full">
-          <h3 className="text-lg font-semibold mb-4">
-            Schedule an Appointment
+        <div className="p-6  rounded-lg shadow-md bg-gray-100 w-full">
+          <h3 className="text-lg text-center font-semibold mb-4">
+            Schedule a Appointment
           </h3>
           <input
             type="text"
             placeholder="Full name"
-            className="w-full p-2 border mt-2 rounded"
+            className="w-full p-2 border-b mt-2 rounded bg-transparent"
           />
           <input
             type="text"
             placeholder="Your phone"
-            className="w-full p-2 border mt-2 rounded"
+            className="w-full p-2 border-b mt-2 rounded bg-transparent"
           />
           <input
             type="email"
             placeholder="Your email"
-            className="w-full p-2 border mt-2 rounded"
+            className="w-full p-2 border-b mt-2 rounded bg-transparent "
           />
           <textarea
             placeholder="Your message"
-            className="w-full p-2 border mt-2 rounded"
+            className="w-full p-2 border-b mt-2 rounded bg-transparent"
           ></textarea>
-          <button className="mt-4 bg-red-500 text-white px-6 py-2 w-full rounded-lg shadow-md hover:bg-red-600">
+          <button className="mt-4 bg-red-500 text-white px-6 py-2 w-full rounded-full shadow-md hover:bg-red-600">
             Submit
           </button>
         </div>
@@ -95,5 +108,3 @@ const Aboutus = () => {
 };
 
 export default Aboutus;
-
-

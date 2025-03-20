@@ -14,7 +14,7 @@ export default function BookingNavbar() {
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         {/* Logo */}
         <div className="text-xl font-bold flex items-center">
-          <img src={abvlogo} alt="ABV Logo" className="h-8 mr-2" />
+          <img src={abvlogo} alt="ABV Logo" className="h-10 mr-2" />
         </div>
 
         {/* Navigation Links - Hidden on mobile */}
