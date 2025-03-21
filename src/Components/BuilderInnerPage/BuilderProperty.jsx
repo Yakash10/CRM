@@ -1,25 +1,25 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import property1 from "../BuilderInnerPage/Assets/property1.png";
-import property2 from "../BuilderInnerPage/Assets/property2.png";
-import property3 from "../BuilderInnerPage/Assets/property3.png";
-import property4 from "../BuilderInnerPage/Assets/property4.png";
-import property5 from "../BuilderInnerPage/Assets/property5.png";
-import property6 from "../BuilderInnerPage/Assets/property6.png";
+import img1 from "../BuilderInnerPage/Assets/IMG1.webp";
+import img2 from "../BuilderInnerPage/Assets/IMG2.jpg";
+import img3 from "../BuilderInnerPage/Assets/IMG3.jpg";
+import img4 from "../BuilderInnerPage/Assets/IMG4.jpg";
+import img5 from "../BuilderInnerPage/Assets/IMG5.webp";
+import img6 from "../BuilderInnerPage/Assets/IMG6.jpg";
 
 const properties = [
-  { id: 1, type: "Apartments", image: property1 },
-  { id: 2, type: "Apartments", image: property2 },
-  { id: 3, type: "Apartments", image: property3 },
-  { id: 4, type: "Villas", image: property4 },
-  { id: 5, type: "Villas", image: property5 },
-  { id: 6, type: "Plots", image: property6 },
-  { id: 7, type: "Apartments", image: property1 },
-  { id: 8, type: "Apartments", image: property2 },
-  { id: 9, type: "Apartments", image: property3 },
-  { id: 10, type: "Apartments", image: property2 },
-  { id: 11, type: "Apartments", image: property3 },
+  { id: 1, type: "Apartments", image: img1 },
+  { id: 2, type: "Apartments", image: img2 },
+  { id: 3, type: "Apartments", image: img3 },
+  { id: 4, type: "Villas", image: img4 },
+  { id: 5, type: "Villas", image: img5 },
+  { id: 6, type: "Plots", image: img6 },
+  { id: 7, type: "Apartments", image: img1 },
+  { id: 8, type: "Apartments", image: img2 },
+  { id: 9, type: "Apartments", image: img3 },
+  { id: 10, type: "Apartments", image: img2 },
+  { id: 11, type: "Apartments", image: img3 },
 ];
 
 export default function PropertyList() {

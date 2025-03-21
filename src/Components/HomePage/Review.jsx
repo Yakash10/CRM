@@ -2,13 +2,14 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/autoplay";
-import review1 from "../HomePage/Assets/review1.png";
-import review2 from "../HomePage/Assets/review2.png";
-import review3 from "../HomePage/Assets/review3.png";
+
+import review1 from "../HomePage/Assets/Review1.png";
+import review2 from "../HomePage/Assets/Review2.png";
+import review3 from "../HomePage/Assets/Review3.png";
 import reviewprofile1 from "../HomePage/Assets/reviewprofile1.png";
 import reviewprofile2 from "../HomePage/Assets/reviewprofile2.png";
 
-export default function review() {
+export default function Review() {
   const testimonials = [
     {
       id: 1,
@@ -54,58 +55,55 @@ export default function review() {
 
   return (
     <div className="w-full mx-auto px-4">
-      <h1 className="text-red-500 text-center">See Our Reviews</h1>
-      <p className=" text-center text-2xl font-semibold mb-6">
+      <h1 className="text-red-500 text-center">
+        See Our Reviews
+      </h1>
+      <p className="text-center text-sm sm:text-lg md:text-xl font-semibold mb-6">
         What Our Users Say About Us
       </p>
       <Swiper
         modules={[Autoplay]}
         spaceBetween={20}
-        slidesPerView={3} // Default to 3 slides on larger screens
+        slidesPerView={1} // Default for mobile
         autoplay={{ delay: 3000, disableOnInteraction: false }}
         loop={true}
         breakpoints={{
-          1024: { slidesPerView: 3 }, // Laptops and desktops
-          768: { slidesPerView: 2 }, // Tablets
           480: { slidesPerView: 1 }, // Mobile
+          768: { slidesPerView: 2 }, // Tablets
+          1024: { slidesPerView: 3 }, // Laptops and larger screens
         }}
         className="mySwiper"
       >
         {testimonials.map((testimonial) => (
           <SwiperSlide key={testimonial.id} className="relative">
-            {/* Background Image */}
             <div className="relative overflow-hidden rounded-lg">
               <img
                 src={testimonial.image}
                 alt="Modern House"
-                className="w-full h-96 object-cover rounded-lg"
+                className="w-full h-72 sm:h-80 md:h-96 object-cover rounded-lg"
               />
             </div>
-
-            {/* Testimonial Card */}
-            <div className="absolute bottom-5 left-1/2 transform -translate-x-1/2 w-11/12 bg-white shadow-lg rounded-xl p-6">
-              <h2 className="font-bold text-lg text-gray-900">
+            <div className="absolute bottom-5 left-1/2 transform -translate-x-1/2 w-11/12 bg-white shadow-lg rounded-xl p-4 sm:p-6">
+              <h2 className="font-bold text-sm sm:text-lg text-gray-900">
                 Best! I Got The House I Wanted Through Hounter
               </h2>
-              <p className="text-gray-600 mt-2 text-sm">{testimonial.review}</p>
-
-              {/* User Info */}
+              <p className="text-gray-600 mt-2 text-xs sm:text-sm">
+                {testimonial.review}
+              </p>
               <div className="flex items-center justify-between mt-4">
                 <div className="flex items-center gap-3">
                   <img
                     src={testimonial.avatar}
                     alt={testimonial.name}
-                    className="w-10 h-10 rounded-full"
+                    className="w-10 h-10 sm:w-14 sm:h-14 lg:w-20 lg:h-20 rounded-full"
                   />
                   <div>
-                    <p className="text-sm font-semibold text-gray-800">
+                    <p className="text-xs sm:text-sm font-semibold text-gray-800">
                       {testimonial.name}
                     </p>
                     <p className="text-xs text-gray-500">{testimonial.role}</p>
                   </div>
                 </div>
-
-                {/* Rating */}
                 <div className="flex items-center gap-1">
                   <span className="text-yellow-500 text-lg">★</span>
                   <span className="text-gray-900 font-semibold">
@@ -117,7 +115,6 @@ export default function review() {
           </SwiperSlide>
         ))}
       </Swiper>
-      <p></p>
     </div>
   );
 }
