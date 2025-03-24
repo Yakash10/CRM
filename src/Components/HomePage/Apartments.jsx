@@ -5,7 +5,7 @@ import { FaBed, FaBath, FaUtensils } from "react-icons/fa";
 import image3 from "../HomePage/Assets/image3.jpg";
 import image2 from "../HomePage/Assets/image2.jpg";
 import imagee1 from "../HomePage/Assets/imagee1.jpg";
-import Avenuepark from "../Homepage/assets/Avenuepark.png";
+// import Avenuepark from "../Homepage/Assets/Avenuepark.png";
 import arunexcello from "../HomePage/Assets/arunexcello.png";
 import radiencelogo from "../HomePage/Assets/radiencelogo.png";
 import { useNavigate } from "react-router-dom";
