@@ -52,8 +52,11 @@ const Aboutus = () => {
             </p>
           </div>
           <div className="flex flex-wrap gap-4 mt-4 text-gray-700 text-sm border-b pb-4">
-            <p className="flex items-center gap-2">
+            <p className="flex items-center gap-2 ">
               <img src={sqft} alt="Sqft" className="w-5 h-5" /> Sqft: 3567
+            </p>
+            <p className="flex items-center gap-2">
+              <img src={bed} alt="Type" className="w-5 h-5" /> Units: 2BHK
             </p>
             <p className="flex items-center gap-2">
               <img src={apartment} alt="Type" className="w-5 h-5" /> Type:
@@ -62,7 +65,7 @@ const Aboutus = () => {
           </div>
           <button
             onClick={() => navigate("/clientbooking")}
-            className="mt-4 bg-red-500 text-white px-6 py-2 rounded-lg shadow-md hover:bg-red-600 w-full md:w-auto"
+            className="mt-4 bg-red-500 text-white px-6 py-2 rounded-full shadow-md hover:bg-red-600 w-full md:w-auto"
           >
             Book Now
           </button>
@@ -101,7 +104,7 @@ const Aboutus = () => {
             placeholder="Your message"
             className="w-full p-2 border-b mt-2 rounded bg-transparent focus:outline-none"
           ></textarea>
-          <button className="mt-4 bg-red-500 text-white px-6 py-2 w-full rounded-full shadow-md hover:bg-red-600">
+          <button className="mt-4 bg-red-500 text-white px-6 py-2 w-40 rounded-full shadow-md hover:bg-red-600">
             Submit
           </button>
         </div>

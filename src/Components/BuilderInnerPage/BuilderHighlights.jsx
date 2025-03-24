@@ -1,40 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Avenuepark from "../HomePage/Assets/Avenuepark.png";
 import offer from "../HomePage/Assets/offer.png";
 import highlightsline from "../BuilderInnerPage/Assets/highlightsline.png";
 import slide1 from "../BuilderInnerPage/Assets/slide1.jpg";
-import slide2 from "../BuilderInnerPage/Assets/slide2.webp";
-import slide3 from "../BuilderInnerPage/Assets/slide3.webp";
-import slide4 from "../BuilderInnerPage/Assets/slide4.webp";
-
-const slides = [slide1, slide2, slide3, slide4];
 
 const PropertyHighlights = () => {
-  const [currentSlide, setCurrentSlide] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 3000);
-    return () => clearInterval(interval);
-  }, []);
-
   return (
-    <div className="relative w-full h-screen flex items-center justify-center bg-black">
-      {/* Slideshow */}
-      <div className="relative w-full h-full flex items-center justify-center overflow-hidden">
-        {slides.map((slide, index) => (
-          <img
-            key={index}
-            src={slide}
-            alt={`Slide ${index + 1}`}
-            className={`absolute w-full h-full object-cover transition-opacity duration-1000 ${
-              index === currentSlide ? "opacity-100" : "opacity-0"
-            }`}
-          />
-        ))}
-      </div>
-
+    <div
+      className="relative w-full h-screen flex items-center justify-center bg-black"
+      style={{
+        backgroundImage: `url(${slide1})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
       {/* Overlay */}
       <div className="absolute inset-0 bg-black bg-opacity-40"></div>
 

@@ -7,7 +7,7 @@ export default function Header() {
 
   return (
     <motion.nav
-      className="bg-gray-100 p-4 shadow-md"
+      className="p-4"
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
@@ -42,13 +42,13 @@ export default function Header() {
         {/* Buttons */}
         <div className="hidden md:flex space-x-4">
           <motion.button
-            className="border border-orange-500 text-orange-500 px-4 py-2 rounded-full hover:bg-orange-100"
+            className="border border-orange-500 text-orange-500 px-4 py-2 rounded-lg hover:bg-orange-100"
             whileHover={{ scale: 1.1 }}
           >
             Post Your Property
           </motion.button>
           <motion.button
-            className="bg-orange-500 text-white px-4 py-2 rounded-full hover:bg-orange-600"
+            className="bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600"
             whileHover={{ scale: 1.1 }}
           >
             Login

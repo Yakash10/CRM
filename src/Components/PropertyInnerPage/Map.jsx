@@ -1,12 +1,9 @@
-
-
-
-
 import React from "react";
 
 const Map = () => {
   return (
-    <div className="w-full max-w-screen-2xl mx-auto p-4">
+    // Slightly reduced width container with a max-width constraint
+    <div className="w-full max-w-7xl mx-auto p-4">
       <h1 className="p-2 text-lg font-semibold">Map View</h1>
       <div className="relative w-full h-[400px] md:h-[500px] lg:h-[600px] border rounded-lg shadow-lg overflow-hidden">
         {/* Google Map Embed */}
@@ -23,6 +20,3 @@ const Map = () => {
 };
 
 export default Map;
-
-
-

@@ -1,17 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { FaMapMarkerAlt, FaRulerCombined, FaBed, FaBath } from "react-icons/fa";
-import { FaBuilding } from "react-icons/fa";
+import {
+  FaMapMarkerAlt,
+  FaRulerCombined,
+  FaBed,
+  FaBath,
+  FaBuilding, // Using FaBuilding for all phases
+} from "react-icons/fa";
 
 // Hero images (top slider)
 import hero1 from "../ClientBookingPage/Assets/hero1.png";
-
 import hero2 from "../ClientBookingPage/Assets/hero2.png";
 import hero3 from "../ClientBookingPage/Assets/hero3.png";
 import hero4 from "../ClientBookingPage/Assets/hero4.png";
-
 
 // Logos (hero overlay)
 import casagrandLogo from "../ClientBookingPage/Assets/casagrandLogo.png";
@@ -24,50 +27,44 @@ import apartment2 from "../ClientBookingPage/Assets/apartment2.jpg";
 import floorplan1 from "../ClientBookingPage/Assets/floorplan1.jpg";
 import floorplan2 from "../ClientBookingPage/Assets/floorplan2.jpg";
 
-
 // Local image for the booking form's left side
 import houseInHands from "../ClientBookingPage/Assets/houseInHands.avif";
 
-// Floors/spaces data
-const floorsData = [
-  {
-    floor: "Floor 1",
-    spaces: ["C1", "C2", "C3", "C4", "C5", "C6", "C7", "C8"],
-  },
-  {
-    floor: "Floor 2",
-    spaces: ["C1", "C2", "C3", "C4", "C5", "C6", "C7", "C8"],
-  },
-  {
-    floor: "Floor 3",
-    spaces: ["C1", "C2", "C3", "C4", "C5", "C6", "C7", "C8"],
-  },
-];
-
 function MainContent() {
-  // Hero slider settings
-  const heroSettings = {
-    dots: true,
-    infinite: true,
-    speed: 800,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 3000,
-    arrows: false,
-    pauseOnHover: false,
-  };
-
-  // Track which space is selected
+  // Existing States
   const [activeSpace, setActiveSpace] = useState(null);
-
-  // Whether to show the floor plan row
   const [showFloorPlan, setShowFloorPlan] = useState(false);
-
-  // Control the booking form visibility
   const [showBookingForm, setShowBookingForm] = useState(false);
 
-  // Scroll to the booking form section when it becomes visible
+  // States for 6 Phases, 100 Floors
+  const [selectedPhase, setSelectedPhase] = useState("Phase 1");
+  const [selectedFloor, setSelectedFloor] = useState(null);
+  const phases = ["Phase 1", "Phase 2", "Phase 3", "Phase 4", "Phase 5", "Phase 6"];
+  const floorsArray = Array.from({ length: 100 }, (_, i) => i + 1);
+
+  // For floors other than 1 => 6 spaces: S1–S6
+  const defaultSpacesArray = ["S1", "S2", "S3", "S4", "S5", "S6"];
+
+  // For Floor 1 => 3 rows, each with 6 items
+  // Row 1: S1-S6, Row 2: T1-T6, Row 3: U1-U6
+  const floorOneRows = [
+    ["S1", "S2", "S3", "S4", "S5", "S6"],
+    ["T1", "T2", "T3", "T4", "T5", "T6"],
+    ["U1", "U2", "U3", "U4", "U5", "U6"],
+  ];
+
+  // Use the same icon for all phases
+  const phaseIcon = <FaBuilding className="inline-block mr-1" />;
+  const phaseIcons = {
+    "Phase 1": phaseIcon,
+    "Phase 2": phaseIcon,
+    "Phase 3": phaseIcon,
+    "Phase 4": phaseIcon,
+    "Phase 5": phaseIcon,
+    "Phase 6": phaseIcon,
+  };
+
+  // Scroll to booking form when visible
   useEffect(() => {
     if (showBookingForm) {
       const formSection = document.getElementById("bookingFormSection");
@@ -77,7 +74,7 @@ function MainContent() {
     }
   }, [showBookingForm]);
 
-  // Scroll to the floor plan section when it becomes visible
+  // Scroll to floor plan when visible
   useEffect(() => {
     if (showFloorPlan) {
       const floorPlanSection = document.getElementById("floorPlanSection");
@@ -87,23 +84,87 @@ function MainContent() {
     }
   }, [showFloorPlan]);
 
-  // On space click => set active + show floor plan
-  const handleSpaceClick = (floor, space) => {
-    setActiveSpace(`${floor}-${space}`);
+  // Handler for space click
+  const handleSpaceClick = (phase, floor, space) => {
+    setActiveSpace(`${phase} - Floor ${floor} - Space ${space}`);
     setShowFloorPlan(true);
   };
 
-  // Show the booking form when "Book Now" is clicked
+  // Handler for "Book Now" button
   const handleBookNow = () => {
     setShowBookingForm(true);
   };
 
+  // Create a ref for the slider
+  const sliderRef = useRef(null);
+
+  // Hero Slider Settings with autoplay disabled and no dots
+  const heroSettings = {
+    dots: false,
+    infinite: true,
+    speed: 800,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: false,
+    arrows: false,
+    pauseOnHover: false,
+  };
+
   return (
     <div className="w-full min-h-screen bg-white">
+      {/* Custom scrollbar styling with two arrow buttons (transparent background, custom arrow colors) */}
+      <style jsx>{`
+        /* Works in WebKit browsers (Chrome, Safari, new Edge) */
+
+        /* Hide all scrollbar buttons by default */
+        .custom-scroll::-webkit-scrollbar-button {
+          display: none;
+        }
+
+        /* Scrollbar track and thumb */
+        .custom-scroll::-webkit-scrollbar {
+          height: 8px; /* Horizontal scrollbar height */
+        }
+        .custom-scroll::-webkit-scrollbar-track {
+          background: #f1f5f9; /* Tailwind gray-100 */
+          border-radius: 9999px;
+        }
+        .custom-scroll::-webkit-scrollbar-thumb {
+          background-color: #f97316; /* Tailwind orange-500 */
+          border-radius: 9999px;
+          border: 1px solid #f1f5f9;
+        }
+
+        /* Show only the left arrow at the start and the right arrow at the end with transparent background */
+        .custom-scroll::-webkit-scrollbar-button:horizontal:decrement:start {
+          display: block;
+          width: 24px;
+          height: 24px;
+          background: none;
+          background-repeat: no-repeat;
+          background-position: center;
+          background-size: 10px 10px;
+          background-image: url("data:image/svg+xml,%3Csvg%20fill%3D%22%23333%22%20viewBox%3D%220%200%2016%2016%22%20xmlns%3D%22http://www.w3.org/2000/svg%22%3E%3Cpath%20d%3D%22M11.354%201.646a.5.5%200%200%201%200%20.708L5.707%208l5.647%205.646a.5.5%200%200%201-.708.708l-6-6a.5.5%200%200%201%200-.708l6-6a.5.5%200%200%201%20.708%200z%22/%3E%3C/svg%3E");
+        }
+        .custom-scroll::-webkit-scrollbar-button:horizontal:increment:end {
+          display: block;
+          width: 24px;
+          height: 24px;
+          background: none;
+          background-repeat: no-repeat;
+          background-position: center;
+          background-size: 10px 10px;
+          background-image: url("data:image/svg+xml,%3Csvg%20fill%3D%22%23333%22%20viewBox%3D%220%200%2016%2016%22%20xmlns%3D%22http://www.w3.org/2000/svg%22%3E%3Cpath%20d%3D%22M4.646%201.646a.5.5%200%200%200%200%20.708L10.293%208%204.646%2013.646a.5.5%200%200%200%20.708.708l6-6a.5.5%200%200%200%200-.708l-6-6a.5.5%200%200%200-.708%200z%22/%3E%3C/svg%3E");
+        }
+      `}</style>
+
       {/* HERO / TOP SLIDER */}
       <section className="relative w-full h-[60vh] sm:h-[70vh] md:h-[90vh]">
-        <div className="h-full overflow-hidden">
-          <Slider {...heroSettings} className="h-full">
+        <div
+          className="h-full overflow-hidden"
+          onClick={() => sliderRef.current?.slickNext()}
+        >
+          <Slider ref={sliderRef} {...heroSettings} className="h-full">
             <div>
               <img
                 src={hero1}
@@ -164,10 +225,10 @@ function MainContent() {
         </div>
       </section>
 
-      {/* ROW 1: a flex with 3 children => image | details | spaces */}
+      {/* ROW 1: Building Image | Details | Phases/Floors/Spaces */}
       <section className="px-4 py-8">
-        <div className="flex flex-col md:flex-row items-start md:space-x-16 space-y-8 md:space-y-0">
-          {/* Child 1: Building image */}
+        <div className="flex flex-col md:flex-row items-start md:space-x-4 space-y-8 md:space-y-0">
+          {/* Left: Building Image */}
           <div className="flex-none w-full md:w-[400px] h-[200px] sm:h-[250px] md:h-[300px] overflow-hidden">
             <img
               src={apartment2}
@@ -176,16 +237,14 @@ function MainContent() {
             />
           </div>
 
-          {/* Child 2: Apartment details */}
+          {/* Middle: Apartment Details */}
           <div className="flex-none w-full md:w-[270px] mt-4 md:mt-12 flex flex-col space-y-4">
             <h2 className="text-2xl font-bold text-gray-800">Bouganville</h2>
             <div className="flex items-center text-gray-600 text-sm space-x-1">
               <FaMapMarkerAlt className="text-gray-400" />
               <span>Koyambedu, Chennai</span>
             </div>
-            <p className="text-orange-600 text-xl font-semibold">
-              ₹2CR - 2.5CR
-            </p>
+            <p className="text-orange-600 text-xl font-semibold">₹2CR - 2.5CR</p>
             <div className="flex flex-wrap items-center text-gray-600 text-sm space-x-2">
               <div className="flex items-center space-x-1">
                 <FaRulerCombined className="text-gray-400" />
@@ -203,60 +262,141 @@ function MainContent() {
             <p className="text-sm text-gray-600">Type: Residential Apartment</p>
           </div>
 
-          {/* Child 3: Select Available Spaces */}
-          <div className="w-full max-w-3xl mx-auto p-4 sm:p-6 space-y-6">
-            {/* Page Title */}
-            <h2 className="text-xl sm:text-2xl font-bold text-center text-gray-800">
-              Select Available Spaces in this Apartment
-            </h2>
+          {/* Right: "Select Available Spaces" Section */}
+          <div className="w-full max-w-3xl">
+            <div className="bg-gradient-to-r from-orange-50 to-white p-6 rounded-lg shadow-lg space-y-6">
+              <h2 className="text-xl sm:text-2xl font-bold text-center text-gray-800">
+                Select Available Spaces in this Apartment
+              </h2>
 
-            {/* Floors */}
-            <div className="space-y-4">
-              {floorsData.map((floorItem, floorIndex) => (
-                <div
-                  key={floorIndex}
-                  className="flex items-center flex-wrap gap-3"
-                >
-                  {/* Icon + Floor Label */}
-                  <div className="flex items-center gap-2">
-                    <FaBuilding className="text-pink-600" size={20} />
-                    <span className="text-lg font-semibold text-gray-800">
-                      {floorItem.floor}
-                    </span>
-                  </div>
+              {/* Phase Pills */}
+              <div className="flex flex-wrap gap-3 justify-center">
+                {phases.map((phase) => {
+                  const isActive = phase === selectedPhase;
+                  return (
+                    <button
+                      key={phase}
+                      onClick={() => {
+                        setSelectedPhase(phase);
+                        setSelectedFloor(null); // reset floor selection
+                        setActiveSpace(null);
+                      }}
+                      className={`px-4 py-2 text-sm font-semibold rounded-full shadow-sm border transition-colors duration-200 ${
+                        isActive
+                          ? "bg-orange-500 text-white border-orange-600"
+                          : "bg-white text-orange-700 border-orange-300 hover:bg-orange-100"
+                      }`}
+                    >
+                      {phaseIcons[phase]} {phase}
+                    </button>
+                  );
+                })}
+              </div>
 
-                  {/* Spaces */}
-                  {floorItem.spaces.map((space, i) => {
-                    const isActive =
-                      activeSpace === `${floorItem.floor}-${space}`;
+              {/* Floor Pills (scrollable) */}
+              <div className="mt-4">
+                <p className="text-center text-gray-700 mb-2 font-medium">
+                  Select a Floor
+                </p>
+                {/* custom-scroll class for custom scrollbar & arrow buttons (only at start/end) */}
+                <div className="w-full overflow-x-auto flex gap-2 py-2 px-1 custom-scroll">
+                  {floorsArray.map((floor) => {
+                    const isFloorActive = floor === selectedFloor;
                     return (
                       <button
-                        key={i}
-                        onClick={() => handleSpaceClick(floorItem.floor, space)}
-                        className={`w-10 sm:w-12 h-10 sm:h-12 flex items-center justify-center
-                          text-xs sm:text-sm font-medium rounded transition-transform duration-200 hover:scale-105
-                          ${
-                            isActive
-                              ? "bg-black text-white"
-                              : "bg-orange-300 text-black hover:bg-orange-400"
-                          }`}
+                        key={floor}
+                        onClick={() => {
+                          setSelectedFloor(floor);
+                          setActiveSpace(null);
+                        }}
+                        className={`min-w-[60px] py-1 text-sm font-medium rounded-full border flex-shrink-0 text-center transition-colors duration-200 ${
+                          isFloorActive
+                            ? "bg-orange-500 text-white border-orange-600"
+                            : "bg-white text-orange-700 border-orange-300 hover:bg-orange-100"
+                        }`}
                       >
-                        {space}
+                        {floor}
                       </button>
                     );
                   })}
                 </div>
-              ))}
+              </div>
+
+              {/* Spaces Buttons */}
+              {selectedFloor && (
+                <div className="mt-4">
+                  <p className="text-center text-gray-700 mb-2 font-medium">
+                    Select a Space on Floor {selectedFloor}
+                  </p>
+                  {selectedFloor === 1 ? (
+                    <div className="flex flex-col space-y-3">
+                      {floorOneRows.map((row, rowIndex) => (
+                        <div
+                          key={rowIndex}
+                          className="flex justify-center gap-3 flex-wrap"
+                        >
+                          {row.map((label) => {
+                            const isActive =
+                              activeSpace ===
+                              `${selectedPhase} - Floor 1 - Space ${label}`;
+                            return (
+                              <button
+                                key={label}
+                                onClick={() =>
+                                  handleSpaceClick(selectedPhase, 1, label)
+                                }
+                                className={`w-12 h-12 flex items-center justify-center text-sm font-semibold rounded-full shadow-sm border transition-transform duration-200 hover:scale-105 ${
+                                  isActive
+                                    ? "bg-orange-500 text-white border-orange-600"
+                                    : "bg-white text-orange-700 border-orange-300 hover:bg-orange-100"
+                                }`}
+                              >
+                                {label}
+                              </button>
+                            );
+                          })}
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="flex flex-wrap gap-3 justify-center">
+                      {defaultSpacesArray.map((spaceLabel) => {
+                        const isActive =
+                          activeSpace ===
+                          `${selectedPhase} - Floor ${selectedFloor} - Space ${spaceLabel}`;
+                        return (
+                          <button
+                            key={spaceLabel}
+                            onClick={() =>
+                              handleSpaceClick(
+                                selectedPhase,
+                                selectedFloor,
+                                spaceLabel
+                              )
+                            }
+                            className={`w-12 h-12 flex items-center justify-center text-sm font-semibold rounded-full shadow-sm border transition-transform duration-200 hover:scale-105 ${
+                              isActive
+                                ? "bg-orange-500 text-white border-orange-600"
+                                : "bg-white text-orange-700 border-orange-300 hover:bg-orange-100"
+                            }`}
+                          >
+                            {spaceLabel}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
           </div>
         </div>
       </section>
 
-      {/* ROW 2: Floor plan section (scrolls into view on selection) */}
+      {/* ROW 2: Floor Plan Section */}
       {showFloorPlan && (
         <section id="floorPlanSection" className="px-4 pb-8">
           <div className="flex flex-col md:flex-row justify-center items-start space-y-8 md:space-y-0 md:space-x-8">
-            {/* Floor plan images */}
             <div className="flex-none w-full md:w-[400px] h-[200px] sm:h-[250px] md:h-[300px] overflow-hidden">
               <img
                 src={floorplan1}
@@ -271,8 +411,6 @@ function MainContent() {
                 className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
               />
             </div>
-
-            {/* Floor plan details: centered vertically */}
             <div className="flex-none w-full md:w-[270px] h-[300px] flex flex-col justify-center space-y-4">
               <h2 className="text-lg sm:text-xl font-bold text-gray-800">
                 Bouganville
@@ -281,7 +419,6 @@ function MainContent() {
               <p className="text-orange-600 text-lg font-semibold">
                 ₹2CR - 2.5CR
               </p>
-
               <div className="flex flex-wrap items-center text-gray-600 text-sm space-x-2">
                 <div className="flex items-center space-x-1">
                   <FaRulerCombined className="text-gray-400" />
@@ -296,7 +433,6 @@ function MainContent() {
                   <span>2 Bath</span>
                 </div>
               </div>
-
               <button
                 onClick={handleBookNow}
                 className="mt-1 bg-orange-500 text-white px-4 py-2 rounded-md hover:bg-orange-600 transition w-fit"
@@ -308,13 +444,12 @@ function MainContent() {
         </section>
       )}
 
-      {/* BOOKING FORM SECTION: Image & form */}
+      {/* BOOKING FORM SECTION */}
       {showBookingForm && (
         <section
           id="bookingFormSection"
           className="w-full flex justify-center items-center"
         >
-          {/* Inline styles for custom animations */}
           <style jsx>{`
             @keyframes slideInLeft {
               0% {
@@ -343,10 +478,7 @@ function MainContent() {
               animation: slideInRight 0.8s ease-out forwards;
             }
           `}</style>
-
-          {/* Unified Container */}
           <div className="flex flex-col md:flex-row w-full max-w-5xl h-[700px] rounded-lg overflow-hidden shadow-lg">
-            {/* LEFT: Image with slide-in animation */}
             <div className="w-full md:w-1/2 h-full animate-slideInLeft">
               <img
                 src={houseInHands}
@@ -354,8 +486,6 @@ function MainContent() {
                 className="w-full h-full object-cover"
               />
             </div>
-
-            {/* RIGHT: Form with slide-in animation */}
             <div className="w-full md:w-1/2 h-full flex items-center justify-center bg-white animate-slideInRight">
               <div className="w-full p-6">
                 <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-6">
@@ -376,54 +506,46 @@ function MainContent() {
                       className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500 placeholder-gray-500"
                     />
                   </div>
-
                   <input
                     type="text"
                     placeholder="United States ( US )*"
                     required
                     className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500 placeholder-gray-500"
                   />
-
                   <input
                     type="text"
                     placeholder="Street Address*"
                     required
                     className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500 placeholder-gray-500"
                   />
-
                   <input
                     type="text"
                     placeholder="Town / City*"
                     required
                     className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500 placeholder-gray-500"
                   />
-
                   <input
                     type="text"
                     placeholder="ZIP Code"
                     className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500 placeholder-gray-500"
                   />
-
                   <input
                     type="email"
                     placeholder="Email Address*"
                     required
                     className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500 placeholder-gray-500"
                   />
-
                   <input
                     type="text"
                     placeholder="Phone*"
                     required
                     className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500 placeholder-gray-500"
                   />
-
                   <textarea
                     rows="3"
                     placeholder="Add Something"
                     className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500 placeholder-gray-500"
                   />
-
                   <button
                     type="submit"
                     className="bg-orange-500 text-white px-6 py-2 rounded-md hover:bg-orange-600 transition font-semibold"

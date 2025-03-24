@@ -55,9 +55,7 @@ export default function Review() {
 
   return (
     <div className="w-full mx-auto px-4">
-      <h1 className="text-red-500 text-center">
-        See Our Reviews
-      </h1>
+      <h1 className="text-red-500 text-center">See Our Reviews</h1>
       <p className="text-center text-sm sm:text-lg md:text-xl font-semibold mb-6">
         What Our Users Say About Us
       </p>
@@ -115,6 +113,13 @@ export default function Review() {
           </SwiperSlide>
         ))}
       </Swiper>
+      {/* Pagination Dots */}
+      <div className="flex justify-center items-center mt-4 space-x-2">
+        <span className="h-2 w-2 bg-gray-400 rounded-full"></span>
+        <span className="h-2 w-2 bg-red-500 rounded-full"></span>
+        <span className="h-2 w-2 bg-gray-400 rounded-full"></span>
+        {/* <span className="h-2 w-2 bg-gray-400 rounded-full"></span> */}
+      </div>
     </div>
   );
 }

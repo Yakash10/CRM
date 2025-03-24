@@ -109,12 +109,12 @@ function BuilderInnerPage() {
 // client booking Layout
 function ClientBookingPage() { 
   return (
-    <>
+    <div className="h-screen overflow-auto scrollbar-hide bg-gray-100">
       <ClientNavbar />
       {/* <ClientHighlights /> */}
       <MainContent />
       <ClientFooter/>
-    </>
+    </div>
   );
 }
 

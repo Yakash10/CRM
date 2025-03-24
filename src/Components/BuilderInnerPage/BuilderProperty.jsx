@@ -1,85 +1,118 @@
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { FaMapMarkerAlt, FaBed } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import img1 from "../BuilderInnerPage/Assets/IMG1.webp";
-import img2 from "../BuilderInnerPage/Assets/IMG2.jpg";
-import img3 from "../BuilderInnerPage/Assets/IMG3.jpg";
-import img4 from "../BuilderInnerPage/Assets/IMG4.jpg";
-import img5 from "../BuilderInnerPage/Assets/IMG5.webp";
-import img6 from "../BuilderInnerPage/Assets/IMG6.jpg";
+import IMG1 from "../BuilderInnerPage/Assets/IMG1.webp";
+import IMG2 from "../BuilderInnerPage/Assets/IMG2.jpg";
+import IMG3 from "../BuilderInnerPage/Assets/IMG3.jpg";
 
 const properties = [
-  { id: 1, type: "Apartments", image: img1 },
-  { id: 2, type: "Apartments", image: img2 },
-  { id: 3, type: "Apartments", image: img3 },
-  { id: 4, type: "Villas", image: img4 },
-  { id: 5, type: "Villas", image: img5 },
-  { id: 6, type: "Plots", image: img6 },
-  { id: 7, type: "Apartments", image: img1 },
-  { id: 8, type: "Apartments", image: img2 },
-  { id: 9, type: "Apartments", image: img3 },
-  { id: 10, type: "Apartments", image: img2 },
-  { id: 11, type: "Apartments", image: img3 },
+  {
+    id: 1,
+    name: "Casagrand Suncity",
+    price: "₹59 L to ₹1.45 Cr",
+    location: "Melakottaiyur",
+    bedrooms: "2, 3 & 4 BHK Apts",
+    type: "Apartments",
+    image: IMG1,
+  },
+  {
+    id: 2,
+    name: "Casagrand Mercury",
+    price: "₹95L to ₹3.3Cr",
+    location: "Perambur",
+    bedrooms: "2, 3 & 4 BHK - 5 BHK Floor Villa",
+    type: "Villas",
+    image: IMG2,
+  },
+  {
+    id: 3,
+    name: "Casagrand Madelyn",
+    price: "₹51 L to ₹78 L",
+    location: "Pallavaram",
+    bedrooms: "2 & 3 BHK Apartments",
+    type: "Apartments",
+    image: IMG3,
+  },
+  {
+    id: 4,
+    name: "Casagrand Madelyn",
+    price: "₹51 L to ₹78 L",
+    location: "Pallavaram",
+    bedrooms: "2 & 3 BHK Apartments",
+    type: "Apartments",
+    image: IMG3,
+  },
 ];
 
-export default function PropertyList() {
+export default function PropertyCards() {
   const [selectedType, setSelectedType] = useState("Apartments");
   const navigate = useNavigate();
 
-  const handlePropertyClick = (property) => {
-    if (property.id === 1) {
-      navigate("/property");
-    }
-  };
+  const filteredProperties = properties.filter(
+    (property) => property.type === selectedType
+  );
 
   return (
-    <div className="p-6">
-      <h2 className="text-xl font-bold mb-4">
-        Explore Properties That Suit Your Lifestyle
-      </h2>
-      {/* Filter Buttons with Animation */}
-      <div className="flex gap-4 mb-6">
-        {["Apartments", "Villas", "Plots", "Land"].map((type) => (
-          <motion.button
-            key={type}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
-            className={`px-4 py-2 border rounded-full transition ${
-              selectedType === type
-                ? "bg-orange-400 text-white"
-                : "border-gray-300"
-            }`}
-            onClick={() => setSelectedType(type)}
-          >
-            {type}
-          </motion.button>
-        ))}
+    <div className="p-4 md:p-6">
+      {/* Filter Buttons */}
+      <div className="flex flex-col md:flex-row justify-between items-center mb-6 gap-4">
+        <p className="text-lg font-semibold text-center md:text-left">
+          Explore the properties that suit your lifestyle
+        </p>
+        <div className="flex flex-wrap gap-2 md:gap-4">
+          {["Apartments", "Villas", "Plots", "Land"].map((type) => (
+            <button
+              key={type}
+              onClick={() => setSelectedType(type)}
+              className={`px-4 py-2 rounded-full border text-sm md:text-base transition-all duration-300 ${
+                selectedType === type
+                  ? "border-orange-500 text-orange-500"
+                  : "border-gray-500 text-gray-500"
+              }`}
+            >
+              {type}
+            </button>
+          ))}
+        </div>
       </div>
-      {/* Property Grid with Animation */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <AnimatePresence>
-          {properties
-            .filter((property) => property.type === selectedType)
-            .map((property) => (
-              <motion.img
-                key={property.id}
-                src={property.image}
-                alt={property.type}
-                className={`w-full h-64 lg:w-[350px] object-cover rounded-lg ${
-                  property.id === 1 ? "cursor-pointer" : ""
-                }`}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -30 }}
-                transition={{ duration: 0.5 }}
-                whileHover={{
-                  scale: 1.05,
-                  boxShadow: "0px 10px 20px rgba(0, 0, 0, 0.2)",
-                }}
-                onClick={() => handlePropertyClick(property)}
-              />
-            ))}
-        </AnimatePresence>
+
+      {/* Property Listings */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {filteredProperties.map((property) => (
+          <div
+            key={property.id}
+            className="bg-white rounded-2xl shadow-lg overflow-hidden"
+          >
+            <img
+              src={property.image}
+              alt={property.name}
+              className="w-full h-48 sm:h-56 object-cover"
+            />
+            <div className="p-4 md:p-5">
+              <span className="bg-orange-400 text-white text-xs font-semibold px-2 py-1 rounded">
+                New Launch
+              </span>
+              <h2 className="text-lg font-semibold mt-2">{property.name}</h2>
+              <p className="text-orange-600 font-bold text-sm">
+                {property.price}
+              </p>
+              <p className="text-gray-600 flex items-center text-sm mt-2">
+                <FaMapMarkerAlt className="mr-2" /> {property.location}
+              </p>
+              <p className="text-gray-600 flex items-center text-sm mt-2">
+                <FaBed className="mr-2" /> {property.bedrooms}
+              </p>
+              <div className="flex justify-center md:justify-start mt-4">
+                <button
+                  onClick={() => navigate("/property")}
+                  className="bg-black text-white px-4 py-2 rounded-lg text-sm md:text-base"
+                >
+                  View More
+                </button>
+              </div>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );

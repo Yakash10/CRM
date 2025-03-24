@@ -141,6 +141,13 @@ const FeaturedProperties = () => {
           </div>
         ))}
       </div>
+      {/* Pagination Dots */}
+      <div className="flex justify-center items-center mt-4 space-x-2">
+        <span className="h-3 w-3 bg-gray-400 rounded-full"></span>
+        <span className="h-3 w-3 bg-red-500 rounded-full"></span>
+        <span className="h-3 w-3 bg-gray-400 rounded-full"></span>
+        <span className="h-3 w-3 bg-gray-400 rounded-full"></span>
+      </div>
     </div>
   );
 };

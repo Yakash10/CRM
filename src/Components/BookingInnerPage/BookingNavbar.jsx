@@ -10,7 +10,7 @@ export default function BookingNavbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="bg-gray-100 p-4 shadow-md">
+    <nav className="p-4">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         {/* Logo */}
         <div className="text-xl font-bold flex items-center">

@@ -21,24 +21,32 @@ const amenities = [
 
 const KeyAmenities = () => {
   return (
-    <div className="p-6 w-full mx-auto">
+    <div className="p-4 md:p-6 w-full mx-auto">
       {/* Key Amenities */}
-      <h2 className="text-xl font-semibold">Key Amenities</h2>
-      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-4 mt-4">
+      <h2 className="text-xl md:text-2xl font-semibold">Key Amenities</h2>
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 mt-4">
         {amenities.map((item, index) => (
           <div key={index} className="flex items-center space-x-2">
-            <img src={item.image} alt={item.label} className="w-10 h-10" />
-            <span className="text-gray-700">{item.label}</span>
+            <img
+              src={item.image}
+              alt={item.label}
+              className="w-8 h-8 md:w-10 md:h-10"
+            />
+            <span className="text-gray-700 text-sm md:text-base">
+              {item.label}
+            </span>
           </div>
         ))}
       </div>
 
       {/* Payment Calculator */}
       <div className="mt-8">
-        <h2 className="text-xl font-semibold">Payment Calculator</h2>
+        <h2 className="text-xl md:text-2xl font-semibold">
+          Payment Calculator
+        </h2>
         <div className="flex justify-between items-center">
-          <p className="text-3xl font-bold mt-2">₹30,0000/month</p>
-          <p className="text-orange-500">Reset</p>
+          <p className="text-2xl md:text-3xl font-bold mt-2">₹30,0000/month</p>
+          <p className="text-orange-500 cursor-pointer">Reset</p>
         </div>
 
         <div className="relative w-full h-3 rounded-lg bg-gray-200 mt-2">
@@ -55,10 +63,9 @@ const KeyAmenities = () => {
             style={{ width: "10%" }}
           ></div>
         </div>
-        <div className="flex justify-between text-gray-700 text-sm mt-2">
+        <div className="flex flex-col sm:flex-row justify-between text-gray-700 text-xs sm:text-sm mt-2">
           <div className="flex flex-col items-start">
             <p>
-              {" "}
               <span className="text-orange-500">⬤</span> Principal & interest
             </p>
             <p className="ml-4 mt-1">₹20,000</p>
@@ -71,7 +78,6 @@ const KeyAmenities = () => {
           </div>
           <div className="flex flex-col items-start">
             <p>
-              {" "}
               <span className="text-black">⬤</span> Homeowners insurance
             </p>
             <p className="ml-4 mt-1">₹20,000</p>
@@ -80,18 +86,21 @@ const KeyAmenities = () => {
       </div>
 
       {/* Loan Details */}
-      <div className="mt-6 border border-gray-200 p-4 rounded-lg grid grid-cols-3 gap-4 w-full">
-        <div className="border-r">
+      <div className="mt-6 border border-gray-400 p-4 rounded-lg grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 w-full">
+        <div className="border-b sm:border-b-0 sm:border-r border-gray-400 pb-2 sm:pb-0">
           <p className="text-gray-600 text-sm">Down payment</p>
           <p className="font-semibold">20% (₹3,00,000) ✏</p>
         </div>
-        <div className="border-r">
+        <div className="border-b sm:border-b-0 sm:border-r border-gray-400 pb-2 sm:pb-0">
           <p className="text-gray-600 text-sm">Home price</p>
           <p className="font-semibold">₹2CR ✏</p>
         </div>
-        <div>
+        <div className="border-b sm:border-b-0 sm:border-r border-gray-400 pb-2 sm:pb-0">
           <p className="text-gray-600 text-sm">Loan details</p>
           <p className="font-semibold">30-yr Nego. 6.67% ✏</p>
+        </div>
+        <div>
+          <p className="text-gray-600 mt-2">....</p>
         </div>
       </div>
     </div>
