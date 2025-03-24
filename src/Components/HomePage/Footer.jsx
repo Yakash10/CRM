@@ -9,19 +9,19 @@ import email from "../BuilderInnerPage/Assets/email.png";
 import location from "../BuilderInnerPage/Assets/location.png";
 import footerbackground from "../BuilderInnerPage/Assets/Footer background.png";
 
-const Footer = () => {
+const BuilderFooter = () => {
   return (
-    <div className="bg-black text-white pt-16 pb-8 mt-4 px-6">
+    <div className="bg-black text-white pt-16 pb-8 px-6">
       <div className="max-w-7xl mx-auto">
         <div
           className="relative bg-cover bg-center rounded-lg p-6 md:p-10 flex flex-col items-center text-center text-white bg-opacity-80 transition-transform transform hover:scale-105"
           style={{ backgroundImage: `url(${footerbackground})` }}
         >
           <h2 className="text-2xl md:text-3xl font-bold">
-            LOOKING FOR MORE PROPERTIES?
+            LOOKING FOR MORE <br/>PROPERTIES?
           </h2>
           <p className="mt-2 text-gray-300">
-            Let’s work together! Drop us a line to see how we can help.
+            Let’s work together! <br/>Drop us a line to see how we can help.
           </p>
           <button className="mt-4 px-6 py-2 border border-white rounded-lg hover:bg-white hover:text-black transition duration-300 ease-in-out">
             Contact us
@@ -118,4 +118,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default BuilderFooter;

@@ -18,10 +18,10 @@ const BuilderFooter = () => {
           style={{ backgroundImage: `url(${footerbackground})` }}
         >
           <h2 className="text-2xl md:text-3xl font-bold">
-            LOOKING FOR MORE PROPERTIES?
+            LOOKING FOR MORE <br/>PROPERTIES?
           </h2>
           <p className="mt-2 text-gray-300">
-            Let’s work together! Drop us a line to see how we can help.
+            Let’s work together! <br/>Drop us a line to see how we can help.
           </p>
           <button className="mt-4 px-6 py-2 border border-white rounded-lg hover:bg-white hover:text-black transition duration-300 ease-in-out">
             Contact us

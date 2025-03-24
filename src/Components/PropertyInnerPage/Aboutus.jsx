@@ -42,12 +42,12 @@ const Aboutus = () => {
           <h1 className="text-2xl md:text-3xl font-bold text-red-600">
             Bouganville
           </h1>
-          <div className="flex flex-wrap justify-between items-center mt-2">
+          <div className="flex flex-col flex-wrap  mt-2">
             <p className="text-gray-600 flex items-center gap-2">
               <img src={location1} alt="Location" className="w-5 h-5" />{" "}
               Koyambedu, Chennai
             </p>
-            <p className="text-lg md:text-xl font-semibold text-red-500">
+            <p className="text-lg md:text-xl p-2 font-semibold text-red-500">
               ₹2CR - 2.5CR
             </p>
           </div>
