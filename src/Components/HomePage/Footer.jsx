@@ -11,7 +11,7 @@ import footerbackground from "../BuilderInnerPage/Assets/Footer background.png";
 
 const BuilderFooter = () => {
   return (
-    <div className="bg-black text-white pt-16 pb-8 px-6">
+    <div className="bg-black text-white pt-16 pb-8 px-6 mt-3">
       <div className="max-w-7xl mx-auto">
         <div
           className="relative bg-cover bg-center rounded-lg p-6 md:p-10 flex flex-col items-center text-center text-white bg-opacity-80 transition-transform transform hover:scale-105"
